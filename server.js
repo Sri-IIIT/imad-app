@@ -5,12 +5,100 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var articles = {
+    'article-one': {
+        title: 'Article One | Sri',
+        heading: 'Article One',
+        date: 'Aug 24, 2017',
+        content: `
+            <p>
+                This is content of the Article One. This is content of the Article One. This is content of the Article One. This is content of the Article One.
+            </p>
+            <p>
+                This is content of the Article One. This is content of the Article One. This is content of the Article One. 
+            </p>
+            <p>
+                This is content of the Article One. This is content of the Article One. 
+            </p>            
+        `
+    },
+    'article-two': {
+        title: 'Article Two | Sri',
+        heading: 'Article Two',
+        date: 'Aug 24, 2017',
+        content: `
+            <p>
+                This is content of the Article Two. This is content of the Article Two. This is content of the Article Two. This is content of the Article Two.
+            </p>
+            <p>
+                This is content of the Article Two. This is content of the Article Two. This is content of the Article Two. 
+            </p>
+            <p>
+                This is content of the Article Two. This is content of the Article Two. 
+            </p>            
+        `
+    },
+    'article-three': {
+        title: 'Article Three | Sri',
+        heading: 'Article One',
+        date: 'Aug 24, 2017',
+        content: `
+            <p>
+                This is content of the Article Three. This is content of the Article Three. This is content of the Article Three. This is content of the Article Three.
+            </p>
+            <p>
+                This is content of the Article Three. This is content of the Article Three. This is content of the Article Three. 
+            </p>
+            <p>
+                This is content of the Article Three. This is content of the Article Three. 
+            </p>            
+        `
+    }
+};
+
+function createTemplate(data){
+    var title=data.title;
+    var heading=data.heading;
+    var date=data.date;
+    var content=data.content;
+    
+    var hmlTemplate = `
+    <html>
+        <head>
+            <title>
+                ${title}
+            </title>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <link href="/ui/style.css" rel="stylesheet" />
+        </head>
+        <body>
+            <div class="container">
+                <div>
+                    <a href="/">Home</a>
+                </div>
+                <hr/>
+                <div>
+                    <h3>${heading}</h3>
+                </div>
+                <div>
+                    ${date}
+                </div>
+                <div>
+                    ${content}            
+                </div>
+            </div>
+        </body>
+    </html>
+    `;
+    return hmlTemplate;
+    
+}
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  res.send(createTemplate(articles[article-one]));
 });
 
 app.get('/article-two', function (req, res) {
