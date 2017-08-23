@@ -93,17 +93,18 @@ function createTemplate(data){
     return hmlTemplate;
     
 }
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+app.get('/article-four', function (req, res) {
+  res.send("Article Four requested and it's on the way..!");
 });
 
 app.get('/:articleName', function (req, res) {
   var articleName = req.params.articleName;
   res.send(createTemplate(articles[articleName]));
-});
-
-app.get('/article-four', function (req, res) {
-  res.send("Article Four requested and it's on the way..!");
 });
 
 app.get('/ui/style.css', function (req, res) {
