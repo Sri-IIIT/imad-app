@@ -40,7 +40,7 @@ var articles = {
     },
     'article-three': {
         title: 'Article Three | Sri',
-        heading: 'Article One',
+        heading: 'Article Three',
         date: 'Aug 24, 2017',
         content: `
             <p>
